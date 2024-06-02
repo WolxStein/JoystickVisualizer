@@ -11,6 +11,9 @@ public class ThrustmasterTFlightHOTAS4Throttle : MonoBehaviour {
     public GameObject LeftThrottle;
     public GameObject RightThrottle;
 
+    private int ZVal = 32767;
+    private int Slider0Val = 32767;
+
     // Use this for initialization
     void Start()
     {
@@ -41,10 +44,19 @@ public class ThrustmasterTFlightHOTAS4Throttle : MonoBehaviour {
                     break;
 
                 case "Z":
-                    LeftThrottle.transform.localEulerAngles = new Vector3(ConvertRange(entry.Value, 0, 65535, 30, -30), LeftThrottle.transform.localEulerAngles.y, LeftThrottle.transform.localEulerAngles.z);
-                    RightThrottle.transform.localEulerAngles = new Vector3(ConvertRange(entry.Value, 0, 65535, 30, -30), RightThrottle.transform.localEulerAngles.y, RightThrottle.transform.localEulerAngles.z);
+                    ZVal = entry.Value;
+                    break;
+
+                case "Sliders0":
+                    Slider0Val = entry.Value;
                     break;
             }
+
+            int LeftValue = Math.Max(0, Math.Min(65535, ZVal + (Slider0Val - 32767) / 2));
+            int RightValue = Math.Max(0, Math.Min(65535, ZVal - (Slider0Val - 32767) / 2));
+
+            RightThrottle.transform.localEulerAngles = new Vector3(ConvertRange(RightValue, 0, 65535, 30, -30), RightThrottle.transform.localEulerAngles.y, RightThrottle.transform.localEulerAngles.z);
+            LeftThrottle.transform.localEulerAngles = new Vector3(ConvertRange(LeftValue, 0, 65535, 30, -30), LeftThrottle.transform.localEulerAngles.y, LeftThrottle.transform.localEulerAngles.z);
         }
     }
 
