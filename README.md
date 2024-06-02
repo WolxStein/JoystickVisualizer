@@ -1,7 +1,7 @@
 # This project is currently being maintained by Wolx Stein
 For request please post an issue
 
-#The original developer is papapiishu and the original GitHub is here:
+# The original developer is papapiishu and the original GitHub is in here:
 [Original Joystick Visualizer v0.12.0](https://github.com/mdjarv/JoystickVisualizer)
 
 # Joystick Visualizer
