@@ -2,7 +2,7 @@
 For request please post an issue
 
 #The original developer is papapiishu and the original GitHub is here:
-[Original GitHub](https://github.com/mdjarv/JoystickVisualizer)
+[Original Joystick Visualizer v0.12.0](https://github.com/mdjarv/JoystickVisualizer)
 
 # Joystick Visualizer
 [![GitHub release](https://img.shields.io/github/release/WolxStein/joystickvisualizer.svg)](https://github.com/WolxStein/JoystickVisualizer/releases/latest)
