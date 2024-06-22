@@ -33,6 +33,7 @@ This software will read buttons and axis input from supported devices and visual
 * Thrustmaster Warthog Throttle
 * Thrustmaster T.Flight Rudder
 * Thrustmaster T16000M
+* Thrustmaster T.Flight HOTAS 1 (Using Warthog 3D model)
 * Thrustmaster T.Flight HOTAS 4 (Using Warthog 3D model)
 * Thrustmaster T.Flight HOTAS X (Using Warthog 3D model)
 * VKB Gunfighter (Using Warthog 3D model)
