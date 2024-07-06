@@ -1,14 +1,17 @@
 ﻿using Assets;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ThrustmasterTFlightHOTAS4Stick : MonoBehaviour {
-    //public const string USB_ID = "044f:b67c";
-    public const string USB_ID = "044f:b108";
-    //public const string USB_ID = "044f:0402";
+public class T16000MDuoLeft : MonoBehaviour {
+    public const string USB_ID = "044f:b67c";
+    //public const string USB_ID = "044f:b10a left";
+
+    //private static string USB_ID = "044f:0402"; // TM Stick (test)
+    //private static string USB_ID = "044f:0404"; // TM Throttle (test)
 
     public GameObject Model;
-    public GameObject Joystick;
+    public GameObject StickHandle;
 
     // Use this for initialization
     void Start()
@@ -20,6 +23,7 @@ public class ThrustmasterTFlightHOTAS4Stick : MonoBehaviour {
     void Update()
     {
     }
+
 
     void StickEvent(JoystickState state)
     {
@@ -40,14 +44,19 @@ public class ThrustmasterTFlightHOTAS4Stick : MonoBehaviour {
                     break;
 
                 case "X":
-                    Joystick.transform.localEulerAngles = new Vector3(Joystick.transform.localEulerAngles.x, Joystick.transform.localEulerAngles.y, ConvertRange(entry.Value, 0, 65535, 20, -20));
+                    StickHandle.transform.localEulerAngles = new Vector3(StickHandle.transform.localEulerAngles.x, ConvertRange(entry.Value, 65535, 0, -20, 20), StickHandle.transform.localEulerAngles.z);
                     break;
                 case "Y":
-                    Joystick.transform.localEulerAngles = new Vector3(ConvertRange(entry.Value, 0, 65535, 20, -20), Joystick.transform.localEulerAngles.y, Joystick.transform.localEulerAngles.z);
+                    StickHandle.transform.localEulerAngles = new Vector3(ConvertRange(entry.Value, 0, 65535, 20, -20), StickHandle.transform.localEulerAngles.y, StickHandle.transform.localEulerAngles.z);
                     break;
+
                 case "RotationZ":
-                    Joystick.transform.localEulerAngles = new Vector3(Joystick.transform.localEulerAngles.x, ConvertRange(entry.Value, 0, 65535, -30, 30), Joystick.transform.localEulerAngles.z);
+                    StickHandle.transform.localEulerAngles = new Vector3(StickHandle.transform.localEulerAngles.x, StickHandle.transform.localEulerAngles.y, ConvertRange(entry.Value, 65535, 0, -20, 20));
                     break;
+
+                    /*case "Sliders0":
+                        Throttle.transform.localEulerAngles = new Vector3(ConvertRange(entry.Value, 0, 65535, 30, -85), Throttle.transform.localEulerAngles.y, Throttle.transform.localEulerAngles.z);
+                        break;*/
             }
         }
     }
@@ -60,4 +69,5 @@ public class ThrustmasterTFlightHOTAS4Stick : MonoBehaviour {
         double scale = (double)(newEnd - newStart) / (originalEnd - originalStart);
         return (float)(newStart + ((value - originalStart) * scale));
     }
+
 }

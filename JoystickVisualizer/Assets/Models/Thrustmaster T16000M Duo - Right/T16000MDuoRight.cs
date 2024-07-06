@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class T16000MDuoRight : MonoBehaviour {
-    public const string USB_ID = "044f:b10a";
+    public const string USB_ID = "044f:b67c";
+    //public const string USB_ID = "044f:b10a right";
 
     //private static string USB_ID = "044f:0402"; // TM Stick (test)
     //private static string USB_ID = "044f:0404"; // TM Throttle (test)
@@ -41,25 +42,20 @@ public class T16000MDuoRight : MonoBehaviour {
                         Model.SetActive(entry.Value == 1);
                     break;
 
-                case "RotationZ":
-                    StickHandle.transform.localEulerAngles = new Vector3(StickHandle.transform.localEulerAngles.x, ConvertRange(entry.Value, 0, 65535, -30, 30), StickHandle.transform.localEulerAngles.z);
-                    //q = Quaternion.AngleAxis(angle, Vector3.up);
-                    //Gimbal.transform.eulerAngles = q.eulerAngles;
-                    break;
                 case "X":
-                    // Rotate Z between -30 and 30
-                    StickHandle.transform.eulerAngles = new Vector3(StickHandle.transform.eulerAngles.x, StickHandle.transform.eulerAngles.y, ConvertRange(entry.Value, 0, 65535, -30, 30));
-
-                    //q = Quaternion.AngleAxis(angle, Vector3.forward);
-                    //Gimbal.transform.eulerAngles = q.eulerAngles;
+                    StickHandle.transform.localEulerAngles = new Vector3(StickHandle.transform.localEulerAngles.x, ConvertRange(entry.Value, 0, 65535, -20, 20), StickHandle.transform.localEulerAngles.z);
                     break;
                 case "Y":
-                    // Rotate X between -30 and 30
-                    StickHandle.transform.eulerAngles = new Vector3(ConvertRange(entry.Value, 0, 65535, -30, 30), StickHandle.transform.eulerAngles.y, StickHandle.transform.eulerAngles.z);
-
-                    //q = Quaternion.AngleAxis(angle, Vector3.right);
-                    //Gimbal.transform.eulerAngles = q.eulerAngles;
+                    StickHandle.transform.localEulerAngles = new Vector3(ConvertRange(entry.Value, 0, 65535, 20, -20), StickHandle.transform.localEulerAngles.y, StickHandle.transform.localEulerAngles.z);
                     break;
+
+                case "RotationZ":
+                    StickHandle.transform.localEulerAngles = new Vector3(StickHandle.transform.localEulerAngles.x, StickHandle.transform.localEulerAngles.y, ConvertRange(entry.Value, 0, 65535, -20, 20));
+                    break;
+
+                /*case "Sliders0":
+                    Throttle.transform.localEulerAngles = new Vector3(ConvertRange(entry.Value, 0, 65535, 30, -85), Throttle.transform.localEulerAngles.y, Throttle.transform.localEulerAngles.z);
+                    break;*/
             }
         }
     }
