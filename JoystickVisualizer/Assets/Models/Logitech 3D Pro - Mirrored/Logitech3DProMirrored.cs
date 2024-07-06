@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Logitech3DProMirrored: MonoBehaviour {
+public class Logitech3DPro: MonoBehaviour {
     public const string USB_ID = "046d:c215";
     //public const string USB_ID = "044f:0402";
     //public const string USB_ID = "044f:0404";
