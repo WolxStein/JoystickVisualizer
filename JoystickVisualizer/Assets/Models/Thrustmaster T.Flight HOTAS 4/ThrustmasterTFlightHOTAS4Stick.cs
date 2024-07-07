@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ThrustmasterTFlightHOTAS4Stick : MonoBehaviour {
-    //public const string USB_ID = "044f:b67c";
-    public const string USB_ID = "044f:b108";
+    public const string USB_ID = "044f:b67c";
     //public const string USB_ID = "044f:0402";
 
     public GameObject Model;
