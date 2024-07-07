@@ -4,8 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class T16000MDuoLeft : MonoBehaviour {
-    public const string USB_ID = "044f:b67c";
-    //public const string USB_ID = "044f:b10a left";
+    public const string USB_ID = "044f:b10a left";
 
     //private static string USB_ID = "044f:0402"; // TM Stick (test)
     //private static string USB_ID = "044f:0404"; // TM Throttle (test)
