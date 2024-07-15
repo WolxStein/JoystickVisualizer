@@ -31,6 +31,10 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.DevicesDataGridView = new System.Windows.Forms.DataGridView();
+            this.enabledDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ControllerDeviceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.RefreshDevicesTimer = new System.Windows.Forms.Timer(this.components);
             this.DataGridView1 = new System.Windows.Forms.DataGridView();
             this.InputName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -47,12 +51,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.PortInput = new System.Windows.Forms.NumericUpDown();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.ControllerDeviceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.form1BindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.enabledDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ModelFilterCheckBox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.DevicesDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ControllerDeviceBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.InputBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PollingRateInput)).BeginInit();
@@ -61,7 +63,6 @@
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ControllerDeviceBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.form1BindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -90,6 +91,39 @@
             this.DevicesDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DevicesDataGridView_CellContentClick);
             this.DevicesDataGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DevicesDataGridView_CellFormatting);
             this.DevicesDataGridView.SelectionChanged += new System.EventHandler(this.DevicesDataGridView_SelectionChanged);
+            // 
+            // enabledDataGridViewCheckBoxColumn
+            // 
+            this.enabledDataGridViewCheckBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.enabledDataGridViewCheckBoxColumn.DataPropertyName = "Enabled";
+            this.enabledDataGridViewCheckBoxColumn.FillWeight = 6.154823F;
+            this.enabledDataGridViewCheckBoxColumn.HeaderText = "Enabled";
+            this.enabledDataGridViewCheckBoxColumn.Name = "enabledDataGridViewCheckBoxColumn";
+            this.enabledDataGridViewCheckBoxColumn.ToolTipText = "Enable device input polling";
+            this.enabledDataGridViewCheckBoxColumn.Width = 74;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "Name";
+            this.dataGridViewTextBoxColumn1.FillWeight = 43.08376F;
+            this.dataGridViewTextBoxColumn1.HeaderText = "Name";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Width = 300;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "UsbId";
+            this.dataGridViewTextBoxColumn2.FillWeight = 50.76142F;
+            this.dataGridViewTextBoxColumn2.HeaderText = "USB ID";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // ControllerDeviceBindingSource
+            // 
+            this.ControllerDeviceBindingSource.DataSource = typeof(Joystick_Proxy.ControllerDevice);
             // 
             // RefreshDevicesTimer
             // 
@@ -270,47 +304,29 @@
             this.splitContainer1.SplitterDistance = 694;
             this.splitContainer1.TabIndex = 12;
             // 
-            // ControllerDeviceBindingSource
-            // 
-            this.ControllerDeviceBindingSource.DataSource = typeof(Joystick_Proxy.ControllerDevice);
-            // 
             // form1BindingSource
             // 
             this.form1BindingSource.DataSource = typeof(Joystick_Proxy.Form1);
             // 
-            // enabledDataGridViewCheckBoxColumn
+            // ModelFilterCheckBox
             // 
-            this.enabledDataGridViewCheckBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.enabledDataGridViewCheckBoxColumn.DataPropertyName = "Enabled";
-            this.enabledDataGridViewCheckBoxColumn.FillWeight = 6.154823F;
-            this.enabledDataGridViewCheckBoxColumn.HeaderText = "Enabled";
-            this.enabledDataGridViewCheckBoxColumn.Name = "enabledDataGridViewCheckBoxColumn";
-            this.enabledDataGridViewCheckBoxColumn.ToolTipText = "Enable device input polling";
-            this.enabledDataGridViewCheckBoxColumn.Width = 74;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "Name";
-            this.dataGridViewTextBoxColumn1.FillWeight = 43.08376F;
-            this.dataGridViewTextBoxColumn1.HeaderText = "Name";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Width = 300;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "UsbId";
-            this.dataGridViewTextBoxColumn2.FillWeight = 50.76142F;
-            this.dataGridViewTextBoxColumn2.HeaderText = "USB ID";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.ModelFilterCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ModelFilterCheckBox.AutoSize = true;
+            this.ModelFilterCheckBox.Checked = true;
+            this.ModelFilterCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ModelFilterCheckBox.Location = new System.Drawing.Point(204, 403);
+            this.ModelFilterCheckBox.Name = "ModelFilterCheckBox";
+            this.ModelFilterCheckBox.Size = new System.Drawing.Size(80, 17);
+            this.ModelFilterCheckBox.TabIndex = 13;
+            this.ModelFilterCheckBox.Text = "Model Filter";
+            this.ModelFilterCheckBox.UseVisualStyleBackColor = true;
+            this.ModelFilterCheckBox.CheckedChanged += new System.EventHandler(this.ModelFilterCheckBox_CheckedChanged);
             // 
             // Form1
             // 
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(1093, 429);
+            this.Controls.Add(this.ModelFilterCheckBox);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.PortInput);
             this.Controls.Add(this.label3);
@@ -326,6 +342,7 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.Text = "Joystick Proxy";
             ((System.ComponentModel.ISupportInitialize)(this.DevicesDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ControllerDeviceBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.InputBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PollingRateInput)).EndInit();
@@ -334,7 +351,6 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.ControllerDeviceBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.form1BindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -368,6 +384,7 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn enabledDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.CheckBox ModelFilterCheckBox;
     }
 }
 
