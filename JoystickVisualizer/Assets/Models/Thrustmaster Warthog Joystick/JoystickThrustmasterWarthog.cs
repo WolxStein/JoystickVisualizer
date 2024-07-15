@@ -26,7 +26,11 @@ public class JoystickThrustmasterWarthog : MonoBehaviour {
     {
         if (state.UsbID != USB_ID && state.UsbID != USB_ID_COMBINED)
         {
+            Model.SetActive(false);
             return;
+
+        } else {
+            Model.SetActive(true);
         }
 
         foreach (KeyValuePair<string, int> entry in state.Data)
@@ -38,11 +42,11 @@ public class JoystickThrustmasterWarthog : MonoBehaviour {
                         Model.SetActive(entry.Value == 1);
                     break;
                 case "X":
-                    Model.SetActive(true);
+            
                     Joystick.transform.localEulerAngles = new Vector3(Joystick.transform.localEulerAngles.x, ConvertRange(entry.Value, 0, 65535, 20, -20), Joystick.transform.localEulerAngles.z);
                     break;
                 case "Y":
-                    Model.SetActive(true);
+            
                     Joystick.transform.localEulerAngles = new Vector3(ConvertRange(entry.Value, 0, 65535, -20, 20), Joystick.transform.localEulerAngles.y, Joystick.transform.localEulerAngles.z);
                     break;
             }

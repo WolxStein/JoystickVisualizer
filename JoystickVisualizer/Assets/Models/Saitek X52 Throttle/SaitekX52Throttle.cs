@@ -25,7 +25,11 @@ public class SaitekX52Throttle : MonoBehaviour {
     {
         if (state.UsbID != USB_ID)
         {
+            Model.SetActive(false);
             return;
+
+        } else {
+            Model.SetActive(true);
         }
 
         foreach (KeyValuePair<string, int> entry in state.Data)
@@ -33,7 +37,7 @@ public class SaitekX52Throttle : MonoBehaviour {
             switch (entry.Key)
             {
                 case "Z": // Throttle
-                    Model.SetActive(true);
+            
                     Throttle.transform.localEulerAngles = new Vector3(ConvertRange(entry.Value, 0, 65535, -25, 28), Throttle.transform.localEulerAngles.y, Throttle.transform.localEulerAngles.z);
                     break;
             }

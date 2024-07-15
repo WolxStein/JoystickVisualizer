@@ -41,7 +41,11 @@ public class TMWarthogJoystick : MonoBehaviour {
     {
         if (state.UsbID != USB_ID && state.UsbID != USB_ID_COMBINED)
         {
+            Model.SetActive(false);
             return;
+
+        } else {
+            Model.SetActive(true);
         }
 
         //Model.SetActive(true);
@@ -57,12 +61,12 @@ public class TMWarthogJoystick : MonoBehaviour {
 
                 case "X":
                     // Rotate Z between -30 and 30
-                    Model.SetActive(true);
+            
                     StickGimbal.transform.eulerAngles = new Vector3(StickGimbal.transform.eulerAngles.x, StickGimbal.transform.eulerAngles.y, ConvertRange(entry.Value, 0, 65535, 20, -20));
                     break;
                 case "Y":
                     // Rotate X between -30 and 30
-                    Model.SetActive(true);
+            
                     StickGimbal.transform.eulerAngles = new Vector3(ConvertRange(entry.Value, 0, 65535, 20, -20), StickGimbal.transform.eulerAngles.y, StickGimbal.transform.eulerAngles.z);
                     break;
 

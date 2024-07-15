@@ -23,7 +23,11 @@ public class SaitekX52ProJoystick : MonoBehaviour {
     {
         if (state.UsbID != USB_ID)
         {
+            Model.SetActive(false);
             return;
+
+        } else {
+            Model.SetActive(true);
         }
 
         foreach (KeyValuePair<string, int> entry in state.Data)
@@ -31,11 +35,11 @@ public class SaitekX52ProJoystick : MonoBehaviour {
             switch (entry.Key)
             {
                 case "X":
-                    Model.SetActive(true);
+            
                     Joystick.transform.eulerAngles = new Vector3(Joystick.transform.eulerAngles.x, Joystick.transform.eulerAngles.y, ConvertRange(entry.Value, 0, 65535, 20, -20));
                     break;
                 case "Y":
-                    Model.SetActive(true);
+            
                     Joystick.transform.eulerAngles = new Vector3(ConvertRange(entry.Value, 0, 65535, 20, -20), Joystick.transform.eulerAngles.y, Joystick.transform.eulerAngles.z);
                     break;
             }

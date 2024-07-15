@@ -26,7 +26,11 @@ public class SaitekX52ProThrottle : MonoBehaviour {
     {
         if (state.UsbID != USB_ID)
         {
+            Model.SetActive(false);
             return;
+
+        } else {
+            Model.SetActive(true);
         }
 
         foreach (KeyValuePair<string, int> entry in state.Data)
@@ -34,7 +38,7 @@ public class SaitekX52ProThrottle : MonoBehaviour {
             switch (entry.Key)
             {
                 case "Z": // Throttle
-                    Model.SetActive(true);
+            
                     
                     // Rotate X between -30 and 30
                     GimbalLeft.transform.eulerAngles = new Vector3(ConvertRange(entry.Value, 0, 65535, 40, -25), GimbalLeft.transform.eulerAngles.y, GimbalLeft.transform.eulerAngles.z);
