@@ -30,7 +30,7 @@ namespace Joystick_Proxy
 
         public DeviceInstance DeviceInstance { get => _deviceInstance; }
         public bool Supported { get; internal set; }
-        public Dictionary<string, string> AlterModels { get => _alterModels; }
+        public Dictionary<string, string> AlterModels { get => _alterModels; set => _alterModels = value; }
         public string SelectedModelUsbId { get => _selectedModelUsbId; set => _selectedModelUsbId = value; }
 
         private DeviceInstance _deviceInstance;

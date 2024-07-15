@@ -9,6 +9,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using IniParser;
 using IniParser.Model;
@@ -49,7 +50,6 @@ namespace Joystick_Proxy
 
             ControllerDeviceBindingSource.DataSource = _devices;
             InputBindingSource.DataSource = _input;
-            //AlternateDeviceBindingSource.DataSource = _alterDevices;
 
             VisualizerHostTextBox.Text = Properties.Settings.Default.Host;
             PortInput.Value = Properties.Settings.Default.Port;
@@ -184,19 +184,8 @@ namespace Joystick_Proxy
                 {
                     if (ShowAllDevicesCheckBox.Checked == true || SupportedDevices.ContainsKey(ControllerDevice.ProductGuidToUSBID(deviceInstance.ProductGuid)))
                     {
-                        Dictionary<string, string> alterModels = new Dictionary<string, string>();
-                        foreach (KeyValuePair<string, string> devices in SupportedDevices)
-                        {
-                            /*if ((devices.Value.ToLower().Contains("joystick") && deviceInstance.InstanceName.ToLower().Contains("joystick")) ||
-                                (devices.Value.ToLower().Contains("throttle") && deviceInstance.InstanceName.ToLower().Contains("throttle")) ||
-                                (devices.Value.ToLower().Contains("hotas") && deviceInstance.InstanceName.ToLower().Contains("hotas")) || 
-                                (devices.Value.ToLower().Contains("pedals") && deviceInstance.InstanceName.ToLower().Contains("pedals")))
-                            {*/
-                                alterModels.Add(devices.Key, devices.Value);
-                            //}
-                        }
+                        Dictionary<string, string>  alterModels = UpdateModelComboBoxes(deviceInstance);
                         addedDevices.Add(new ControllerDevice(_directInput, deviceInstance, alterModels));
-
                     }
                 }
             }
@@ -224,6 +213,28 @@ namespace Joystick_Proxy
             {
                 AddDevice(device);
             }
+        }
+
+        private Dictionary<string, string> UpdateModelComboBoxes(DeviceInstance deviceInstance)
+        {
+            Dictionary<string, string> alterModels = new Dictionary<string, string>();
+            foreach (KeyValuePair<string, string> devices in SupportedDevices)
+            {
+                string usb_id = Regex.Replace(deviceInstance.ProductGuid.ToString(), @"(^....)(....).*$", "$2:$1");
+
+                if (!ModelFilterCheckBox.Checked ||
+                    (ModelFilterCheckBox.Checked && 
+                    SupportedDevices.ContainsKey(usb_id) &&                     
+                    ((devices.Value.ToLower().Contains("joystick") && SupportedDevices[usb_id].ToLower().Contains("joystick")) ||
+                    (devices.Value.ToLower().Contains("throttle") && SupportedDevices[usb_id].ToLower().Contains("throttle")) ||
+                    (devices.Value.ToLower().Contains("hotas") && SupportedDevices[usb_id].ToLower().Contains("hotas")) ||
+                    (devices.Value.ToLower().Contains("pedals") && SupportedDevices[usb_id].ToLower().Contains("pedals")))))
+                {
+                    alterModels.Add(devices.Key, devices.Value);
+                }
+            }
+
+            return alterModels;
         }
 
         private bool IsSupported(DeviceInstance deviceInstance)
@@ -393,14 +404,19 @@ namespace Joystick_Proxy
             }
         }
 
-        private void TipJar_Click(object sender, EventArgs e)
-        {
-            System.Diagnostics.Process.Start("http://paypal.me/mdjarv");
-        }
-
         private void ShowAllDevicesCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             RefreshDevicesTimer_Tick(sender, e);
+        }
+
+        private void ModelFilterCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in DevicesDataGridView.Rows)
+            {
+                ControllerDevice cellDevice = (ControllerDevice)row.DataBoundItem;
+                cellDevice.AlterModels = UpdateModelComboBoxes(cellDevice.DeviceInstance);
+                UpdateAlterModels();
+            }
         }
 
         private void VisualizerHostTextBox_Leave(object sender, EventArgs e)
