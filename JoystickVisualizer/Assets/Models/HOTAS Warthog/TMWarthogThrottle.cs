@@ -51,7 +51,11 @@ public class TMWarthogThrottle : MonoBehaviour {
     {
         if (state.UsbID != USB_ID && state.UsbID != USB_ID_COMBINED)
         {
+            Model.SetActive(false);
             return;
+
+        } else {
+            Model.SetActive(true);
         }
 
         foreach (KeyValuePair<string, int> entry in state.Data)
@@ -65,13 +69,13 @@ public class TMWarthogThrottle : MonoBehaviour {
 
                 case "RotationZ": // Left Throttle
                     // Rotate Z between -30 and 30
-                    Model.SetActive(true);
+            
                     GimbalLeft.transform.eulerAngles = new Vector3(ConvertRange(entry.Value, 0, 65535, 40, -25), GimbalLeft.transform.eulerAngles.y, GimbalLeft.transform.eulerAngles.z);
                     break;
 
                 case "Z": // Right Throttle
                     // Rotate X between -30 and 30
-                    Model.SetActive(true);
+            
                     GimbalRight.transform.eulerAngles = new Vector3(ConvertRange(entry.Value, 0, 65535, 40, -25), GimbalRight.transform.eulerAngles.y, GimbalRight.transform.eulerAngles.z);
                     break;
                     

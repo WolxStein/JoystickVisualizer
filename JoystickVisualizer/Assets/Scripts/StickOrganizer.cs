@@ -29,21 +29,23 @@ public class StickOrganizer : MonoBehaviour {
         foreach (GameObject model in ControllerModels)
         {
             if (model.activeInHierarchy)
-                activeControllers.Add(model);
-        }
-
-        if (oldLength != activeControllers.Count)
-        {
-            NoDevicesText.SetActive(activeControllers.Count == 0);
-
-            Debug.Log("Active controller count changed from "+ oldLength + " to " + activeControllers.Count + ", reorganizing models");
-            
-            float center = ((activeControllers.Count-1) * OFFSET) / 2;
-
-            for (int i=0; i < activeControllers.Count; i++)
             {
-                activeControllers[i].transform.position = new Vector3((i * OFFSET) - center, activeControllers[i].transform.position.y, activeControllers[i].transform.position.z);
+                activeControllers.Add(model);
+                NoDevicesText.SetActive(activeControllers.Count == 0);
+
+                Debug.Log("Active controller count changed from " + oldLength + " to " + activeControllers.Count + ", reorganizing models");
+
+                float center = ((activeControllers.Count - 1) * OFFSET) / 2;
+
+                for (int i = 0; i < activeControllers.Count; i++)
+                {
+                    activeControllers[i].transform.position = new Vector3((i * OFFSET) - center, activeControllers[i].transform.position.y, activeControllers[i].transform.position.z);
+                }
             }
         }
+
+        /*if (oldLength != activeControllers.Count)
+        {*/
+        //}
     }
 }

@@ -39,10 +39,12 @@ public class SaitekCyborgEvoThrottle : MonoBehaviour
     {
         if (state.UsbID != USB_ID)
         {
+            Model.SetActive(false);
             return;
-        }
 
-        Model.SetActive(true);
+        } else {
+            Model.SetActive(true);
+        }
 
         foreach (KeyValuePair<string, int> entry in state.Data)
         {

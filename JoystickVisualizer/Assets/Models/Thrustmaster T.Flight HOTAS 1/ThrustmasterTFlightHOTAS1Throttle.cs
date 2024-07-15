@@ -28,10 +28,14 @@ public class ThrustmasterTFlightHOTAS1Throttle : MonoBehaviour {
     {
         if (state.UsbID != USB_ID)
         {
+            Model.SetActive(false);
             return;
+
+        } else {
+            Model.SetActive(true);
         }
 
-        Model.SetActive(true);
+
 
         foreach (KeyValuePair<string, int> entry in state.Data)
         {
