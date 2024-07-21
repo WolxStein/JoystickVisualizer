@@ -31,15 +31,12 @@ public class CHProPedals : MonoBehaviour {
     {
         if (state.UsbID != USB_ID && state.UsbID != USB_ID_2)
         {
-            Model.SetActive(false);
             return;
 
         } else {
             Model.SetActive(true);
         }
-
-
-
+        
         foreach (KeyValuePair<string, int> entry in state.Data)
         {
             switch (entry.Key)

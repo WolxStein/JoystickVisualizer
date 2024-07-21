@@ -26,7 +26,6 @@ public class SaitekX52ProThrottle : MonoBehaviour {
     {
         if (state.UsbID != USB_ID)
         {
-            Model.SetActive(false);
             return;
 
         } else {

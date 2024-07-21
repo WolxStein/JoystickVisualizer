@@ -31,15 +31,12 @@ public class ThrustmasterTFlightRudderCarMode : MonoBehaviour {
     {
         if (state.UsbID != USB_ID)
         {
-            Model.SetActive(false);
             return;
 
         } else {
             Model.SetActive(true);
         }
-
-
-
+        
         foreach (KeyValuePair<string, int> entry in state.Data)
         {
             switch (entry.Key)

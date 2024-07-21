@@ -26,7 +26,6 @@ public class T16000MThrottle : MonoBehaviour {
     {
         if (state.UsbID != USB_ID)
         {
-            Model.SetActive(false);
             return;
 
         } else {

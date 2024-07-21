@@ -26,7 +26,6 @@ public class JoystickThrustmasterWarthog : MonoBehaviour {
     {
         if (state.UsbID != USB_ID && state.UsbID != USB_ID_COMBINED)
         {
-            Model.SetActive(false);
             return;
 
         } else {
