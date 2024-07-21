@@ -10,9 +10,14 @@ public class StickOrganizer : MonoBehaviour {
     public GameObject[] ControllerModels;
 
     private List<GameObject> activeControllers = new List<GameObject>();
-    
+
+    private GameObject LeftDevice, CenterDevice, RightDevice;
+
     // Use this for initialization
-    void Start () {
+    void Start() {
+        LeftDevice = null;
+        CenterDevice = null;
+        RightDevice = null;
         if (ControllerModels == null || ControllerModels.Length == 0)
             ControllerModels = GameObject.FindGameObjectsWithTag("ControllerModel").OrderBy(o => o.transform.parent.GetSiblingIndex()).ToArray();
     }
@@ -30,6 +35,36 @@ public class StickOrganizer : MonoBehaviour {
         {
             if (model.activeInHierarchy)
             {
+                if (model != LeftDevice && model != CenterDevice && model != RightDevice)
+                {
+                    switch (model.transform.parent.tag)
+                    {
+                        case "LeftDevice":
+                            if (LeftDevice != null)
+                            {
+                                LeftDevice.SetActive(false);
+                            }
+                            LeftDevice = model;
+                            break;
+
+                        case "CenterDevice":
+                            if (CenterDevice != null)
+                            {
+                                CenterDevice.SetActive(false);
+                            }
+                            CenterDevice = model;
+                            break;
+
+                        case "RightDevice":
+                            if (RightDevice != null)
+                            {
+                                RightDevice.SetActive(false);
+                            }
+                            RightDevice = model;
+                            break;
+                    }
+                }
+
                 activeControllers.Add(model);
                 NoDevicesText.SetActive(activeControllers.Count == 0);
 
@@ -43,9 +78,5 @@ public class StickOrganizer : MonoBehaviour {
                 }
             }
         }
-
-        /*if (oldLength != activeControllers.Count)
-        {*/
-        //}
     }
 }

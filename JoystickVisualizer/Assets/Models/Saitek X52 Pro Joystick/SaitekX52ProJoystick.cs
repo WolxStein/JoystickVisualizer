@@ -23,7 +23,6 @@ public class SaitekX52ProJoystick : MonoBehaviour {
     {
         if (state.UsbID != USB_ID)
         {
-            Model.SetActive(false);
             return;
 
         } else {

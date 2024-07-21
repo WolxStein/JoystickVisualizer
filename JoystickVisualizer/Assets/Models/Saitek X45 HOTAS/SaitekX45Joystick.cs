@@ -27,7 +27,6 @@ public class SaitekX45Joystick : MonoBehaviour {
     {
         if (state.UsbID != USB_ID && state.UsbID != USB_ID_2)
         {
-            Model.SetActive(false);
             return;
 
         } else {
